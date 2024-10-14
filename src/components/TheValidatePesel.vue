@@ -55,27 +55,54 @@ const validatePeselInput = () => {
     ? validInputMessage
     : invalidInputMessage
 }
+
+const checkForm = (e) => {
+  e.preventDefault()
+}
 </script>
 
 <template>
   <div class="container">
     <h1 class="heading">Exercise 2</h1>
-    <label>Enter your PESEL number:</label>
-    <input v-model="peselNumber" placeholder="Enter your PESEL number" />
-    <button @click="validatePeselInput">Check</button>
-    <span v-if="validateInputMessage">{{ validateInputMessage }}</span>
+    <form @submit.prevent="checkForm" class="psesel__form">
+      <label for="peselNumber" class="label">Enter your PESEL number:</label>
+      <input
+        v-model="peselNumber"
+        placeholder="Enter your PESEL number"
+        class="form__field"
+        id="peselNumber"
+        type="text"
+        maxlength="11"
+        minlength="11"
+      />
+      <span
+        :class="
+          validateInputMessage === 'The pesel number was entered correctly.'
+            ? 'valid__message'
+            : 'invalid__message'
+        "
+        v-if="validateInputMessage"
+        >{{ validateInputMessage }}</span
+      >
+      <button @click="validatePeselInput">Check</button>
+    </form>
   </div>
 </template>
 
 <style>
-.container {
+form {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
   gap: 10px;
 }
 
-.heading {
-  font-size: 20px;
+.invalid__message {
+  padding: 0;
+  color: rgb(203, 30, 30);
+}
+
+.valid__message {
+  padding: 0;
+  color: #32974f;
 }
 </style>
