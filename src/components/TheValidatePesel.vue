@@ -58,6 +58,7 @@ const validatePeselInput = () => {
 
 const checkForm = (e) => {
   e.preventDefault()
+  peselNumber.value = ''
 }
 </script>
 
