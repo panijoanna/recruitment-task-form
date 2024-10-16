@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-const fileText = ref('')
+const fileText = ref(null)
 
 const handleTextFileUpload = (e) => {
   const file = e.target.files[0]
@@ -9,7 +9,10 @@ const handleTextFileUpload = (e) => {
 
     reader.onload = (e) => {
       const textContent = e.target.result
-      fileText.value = shuffleText(textContent)
+      fileText.value = textContent
+        .split('\n')
+        .map((line) => shuffleText(line))
+        .join('\n')
     }
 
     reader.readAsText(file)
@@ -18,11 +21,7 @@ const handleTextFileUpload = (e) => {
 
 const shuffleText = (textContent) =>
   textContent[0] +
-  textContent
-    .slice(1, -1)
-    .match(/[a-zA-ZąęłńóśźżĄĘŁŃÓŚŹŻ0-9,.!?;:() ]/g)
-    .sort(() => 0.5 - Math.random())
-    .join('') +
+  [...textContent.slice(1, -1)].sort(() => 0.5 - Math.random()).join('') +
   textContent[textContent.length - 1]
 </script>
 
