@@ -1,6 +1,15 @@
-# recruitment-task-form
+## 📁 Recruitment tasks
 
-This template should help get you started developing with Vue 3 in Vite.
+🔗 Demo: https://bespoke-rugelach-146a78.netlify.app
+
+#### Description
+The project was completed as part of a recruitment process. It contains three tasks. Unit tests were written for one of the tasks, which can be checked using the command **npx vitest**
+
+#### Tech stack:
+```
+Vue3
+Vitest
+```
 
 ## Recommended IDE Setup
 
