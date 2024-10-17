@@ -2,6 +2,11 @@
 
 🔗 Demo: https://bespoke-rugelach-146a78.netlify.app
 
+#### Important
+```
+If the table data is not loaded, it may indicate that the API is currently not providing access to it. Then try again after some time.
+```
+
 #### Description
 The project was completed as part of a recruitment process. It contains three tasks. Unit tests were written for one of the tasks, which can be checked using the command **npx vitest**
 
