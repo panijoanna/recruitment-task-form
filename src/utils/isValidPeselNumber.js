@@ -1,8 +1,6 @@
-import { it, describe, expect } from 'vitest'
-
 const STORE_WEIGHT_BY_PESEL_NUMBER = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
 
-const isValidPeselNumber = (peselNumber) => {
+export const isValidPeselNumber = (peselNumber) => {
   let year = parseInt(peselNumber.slice(0, 2), 10)
   let month = parseInt(peselNumber.slice(2, 4), 10)
   let day = parseInt(peselNumber.slice(4, 6), 10)
@@ -43,35 +41,3 @@ const isValidPeselNumber = (peselNumber) => {
 
   return calculatedControlNumber === controlNumber
 }
-
-describe('isValidPeselNumber function', () => {
-  it('should return true for a valid PESEL', () => {
-    const pesel = '64042999928'
-    expect(isValidPeselNumber(pesel)).toBe(true)
-  })
-
-  it('should return false if the date is incorrect', () => {
-    const pesel = '52023114478'
-    expect(isValidPeselNumber(pesel)).toBe(false)
-  })
-
-  it('should return false if the gender code is invalid', () => {
-    const pesel = '44051401959'
-    expect(isValidPeselNumber(pesel)).toBe(false)
-  })
-
-  it('should return false if the PESEL is too short', () => {
-    const pesel = '7745639'
-    expect(isValidPeselNumber(pesel)).toBe(false)
-  })
-
-  it('should return false if the PESEL is too long', () => {
-    const pesel = '800424487747'
-    expect(isValidPeselNumber(pesel)).toBe(false)
-  })
-
-  it('should return false if the control number is invalid', () => {
-    const pesel = '97031003023'
-    expect(isValidPeselNumber(pesel)).toBe(false)
-  })
-})
