@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-
 const peselNumber = ref('')
 const validateInputMessage = ref('')
+const STORE_WEIGHT_BY_PESEL_NUMBER = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
 
 const isValidPeselNumber = (peselNumber) => {
   let year = parseInt(peselNumber.slice(0, 2), 10)
@@ -37,23 +37,17 @@ const isValidPeselNumber = (peselNumber) => {
 
   genderNumber > 9 || genderNumber < 0 ? false : null
 
-  const storeWeightByPeselNumber = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
   const sum = peselNumber
     .slice(0, 10)
     .split('')
-    .reduce((acc, num, index) => acc + parseInt(num, 10) * storeWeightByPeselNumber[index], 0)
+    .reduce((acc, num, index) => acc + parseInt(num, 10) * STORE_WEIGHT_BY_PESEL_NUMBER[index], 0)
   const calculatedControlNumber = (10 - (sum % 10)) % 10
 
   return calculatedControlNumber === controlNumber
 }
 
 const validatePeselInput = () => {
-  const validInputMessage = 'The pesel number was entered correctly.'
-  const invalidInputMessage = 'The pesel number was entered incorrectly.'
-
   validateInputMessage.value = isValidPeselNumber(peselNumber.value)
-    ? validInputMessage
-    : invalidInputMessage
 }
 
 const checkForm = (e) => {
@@ -69,7 +63,7 @@ const checkForm = (e) => {
       <label for="peselNumber" class="label">Enter your PESEL number:</label>
       <input
         v-model="peselNumber"
-        placeholder="Enter your PESEL number"
+        placeholder="Enter your PESEL number..."
         class="form__field"
         id="peselNumber"
         type="text"
@@ -77,13 +71,13 @@ const checkForm = (e) => {
         minlength="11"
       />
       <span
-        :class="
-          validateInputMessage === 'The pesel number was entered correctly.'
-            ? 'valid__message'
-            : 'invalid__message'
-        "
-        v-if="validateInputMessage"
-        >{{ validateInputMessage }}</span
+        :class="validateInputMessage ? 'valid__message' : 'invalid__message'"
+        v-if="validateInputMessage !== ''"
+        >{{
+          validateInputMessage
+            ? 'The pesel number was entered correctly.'
+            : 'The pesel number was entered incorrectly.'
+        }}</span
       >
       <button @click="validatePeselInput">Check</button>
     </form>
