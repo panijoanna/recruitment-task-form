@@ -37,6 +37,8 @@ export const useUsersStore = defineStore('users', () => {
       )
       const updatedUser = response.data
       initializeEditingState.value = updatedUser
+      const userIndex = users.value.findIndex((user) => user.id === updatedUser.id)
+      users.value[userIndex] = updatedUser
     } catch (error) {
       console.error(error)
     }
