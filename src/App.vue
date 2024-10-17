@@ -1,13 +1,13 @@
 <script setup>
-import TheTextFileUploadForm from '../src/components/TheTextFileUploadForm.vue'
-import TheUserListViewAPIHandler from './components/TheUserListViewAPIHandler.vue'
-import TheValidatePesel from './components/TheValidatePesel.vue'
+import FileUpload from './components/FileUpload.vue'
+import UserList from './components/UserList.vue'
+import PeselForm from './components/PeselForm.vue'
 </script>
 
 <template>
-  <TheTextFileUploadForm />
-  <TheValidatePesel />
-  <TheUserListViewAPIHandler />
+  <FileUpload />
+  <PeselForm />
+  <UserList />
 </template>
 
 <style scoped></style>
