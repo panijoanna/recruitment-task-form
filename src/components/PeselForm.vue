@@ -1,17 +1,17 @@
 <script setup>
-import { isValidPeselNumber } from '@/utils/isValidPeselNumber'
-import { ref } from 'vue'
-const peselNumber = ref('')
-const validateInputMessage = ref('')
+import { isValidPeselNumber } from "@/utils/isValidPeselNumber";
+import { ref } from "vue";
+const peselNumber = ref("");
+const validateInputMessage = ref("");
 
 const validatePeselInput = () => {
-  validateInputMessage.value = isValidPeselNumber(peselNumber.value)
-}
+  validateInputMessage.value = isValidPeselNumber(peselNumber.value);
+};
 
 const checkForm = (e) => {
-  e.preventDefault()
-  peselNumber.value = ''
-}
+  e.preventDefault();
+  peselNumber.value = "";
+};
 </script>
 
 <template>
@@ -33,8 +33,8 @@ const checkForm = (e) => {
         v-if="validateInputMessage !== ''"
         >{{
           validateInputMessage
-            ? 'The pesel number was entered correctly.'
-            : 'The pesel number was entered incorrectly.'
+            ? "The pesel number was entered correctly."
+            : "The pesel number was entered incorrectly."
         }}</span
       >
       <button @click="validatePeselInput">Check</button>

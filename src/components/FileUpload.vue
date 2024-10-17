@@ -1,35 +1,40 @@
 <script setup>
-import { ref } from 'vue'
-const fileText = ref(null)
+import { ref } from "vue";
+const fileText = ref(null);
 
 const handleTextFileUpload = (e) => {
-  const file = e.target.files[0]
+  const file = e.target.files[0];
   if (file) {
-    const reader = new FileReader()
+    const reader = new FileReader();
 
     reader.onload = (e) => {
-      const textContent = e.target.result
+      const textContent = e.target.result;
       fileText.value = textContent
-        .split('\n')
+        .split("\n")
         .map((line) => shuffleText(line))
-        .join('\n')
-    }
+        .join("\n");
+    };
 
-    reader.readAsText(file)
+    reader.readAsText(file);
   }
-}
+};
 
 const shuffleText = (textContent) =>
   textContent[0] +
-  [...textContent.slice(1, -1)].sort(() => 0.5 - Math.random()).join('') +
-  textContent[textContent.length - 1]
+  [...textContent.slice(1, -1)].sort(() => 0.5 - Math.random()).join("") +
+  textContent[textContent.length - 1];
 </script>
 
 <template>
   <div class="container">
     <h1 class="heading">Exercise 1</h1>
     <p>Upload a text file:</p>
-    <input type="file" @change="handleTextFileUpload" accept=".txt, .rtf" class="form__field" />
+    <input
+      type="file"
+      @change="handleTextFileUpload"
+      accept=".txt, .rtf"
+      class="form__field"
+    />
     <p>File Content:</p>
     <div v-if="fileText" class="file__content--container">
       {{ fileText }}

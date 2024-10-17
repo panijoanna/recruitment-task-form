@@ -1,22 +1,26 @@
 <script setup>
-import { useUsersStore } from '@/stores/users.js'
-import { ref, computed } from 'vue'
+import { useUsersStore } from "@/stores/users.js";
+import { computed, ref } from "vue";
 
-const userSearch = ref('')
-const userStore = useUsersStore()
+const userSearch = ref("");
+const userStore = useUsersStore();
 
 const filteredUser = computed(() => {
   return userStore.users.filter((user) => {
-    return user.name.toLowerCase().includes(userSearch.value.toLowerCase())
-  })
-})
+    return user.name.toLowerCase().includes(userSearch.value.toLowerCase());
+  });
+});
 </script>
 
 <template>
   <div class="container">
     <h1 class="heading">Exercise 3</h1>
     <div>
-      <input v-model="userSearch" class="form__field" placeholder="Search user..." />
+      <input
+        v-model="userSearch"
+        class="form__field"
+        placeholder="Search user..."
+      />
       <button>Search</button>
     </div>
     <table>
@@ -39,12 +43,18 @@ const filteredUser = computed(() => {
               name: user.name,
               email: user.email,
               gender: user.gender,
-              status: user.status
+              status: user.status,
             }"
             :key="key"
           >
-            <span v-if="user.id !== userStore.initializeEditingState">{{ value }}</span>
-            <input class="edit__field" v-else v-model="userStore.createEditedUser[key]" />
+            <span v-if="user.id !== userStore.initializeEditingState">{{
+              value
+            }}</span>
+            <input
+              class="edit__field"
+              v-else
+              v-model="userStore.createEditedUser[key]"
+            />
           </td>
           <td>
             <button

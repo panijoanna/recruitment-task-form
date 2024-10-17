@@ -1,7 +1,7 @@
 <script setup>
-import FileUpload from './components/FileUpload.vue'
-import UserList from './components/UserList.vue'
-import PeselForm from './components/PeselForm.vue'
+import FileUpload from "./components/FileUpload.vue";
+import PeselForm from "./components/PeselForm.vue";
+import UserList from "./components/UserList.vue";
 </script>
 
 <template>
@@ -9,5 +9,3 @@ import PeselForm from './components/PeselForm.vue'
   <PeselForm />
   <UserList />
 </template>
-
-<style scoped></style>
